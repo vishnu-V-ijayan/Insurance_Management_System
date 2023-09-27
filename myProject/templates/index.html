@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Management System</title>
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, h3, ul, li, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #005293;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        nav button {
+            background-color: #005293;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            overflow: auto;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .dashboard-item {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Add additional styling as needed */
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav {
+                margin-top: 10px;
+                justify-content: center;
+            }
+
+            nav button {
+                margin: 5px;
+            }
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #0066cc; /* Change the footer color to blue */
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between; /* Distribute contents */
+            align-items: center;
+        }
+
+        footer div.contact {
+            flex: 1;
+            text-align: left;
+        }
+
+        footer div.quick-links {
+            flex: 1;
+            text-align: right; /* Move "Quick Links" to the right */
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <!-- Insert your logo image here -->
+            <img src="logo.png" alt="InsureMagnet Logo">
+            <h1>InsureMagnet</h1>
+        </div>
+        <nav>
+            <button id="insuranceTypes">Insurance Types</button>
+            <button id="renewPolicy">Renew Policy</button>
+            <button id="claim">Claim</button>
+            <button id="support">Support</button>
+        </nav>
+    </header>
+
+    <!-- Main Content Section (Dashboard) -->
+    <main>
+        <div class="dashboard-container">
+            <div class="dashboard-item">
+                <h3>Life Insurance</h3>
+                <p>Protect your loved ones with our life insurance plans.</p>
+                <button>Learn More</button>
+            </div>
+
+            <div class="dashboard-item">
+                <h3>Auto Insurance</h3>
+                <p>Get coverage for your vehicle against accidents and damage.</p>
+                <button>Learn More</button>
+            </div>
+
+            <div class="dashboard-item">
+                <h3>Home Insurance</h3>
+                <p>Secure your home and belongings with our home insurance options.</p>
+                <button>Learn More</button>
+            </div>
+
+            <!-- Add Health Insurance to the dashboard -->
+            <div class="dashboard-item">
+                <h3>Health Insurance</h3>
+                <p>Ensure your health and well-being with our health insurance plans.</p>
+                <button>Learn More</button>
+            </div>
+            <!-- End of Health Insurance -->
+
+            <!-- Add more dashboard items as needed -->
+
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div>
+            <p>Contact Us</p>
+            <p>Email: contact@insuremagnet.com</p>
+            <p>Phone: +1 (123) 456-7890</p>
+        </div>
+        <div>
+            <p>Quick Links</p>
+            <ul>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
