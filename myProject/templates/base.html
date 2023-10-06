@@ -175,7 +175,19 @@
         footer ul li {
             margin-bottom: 5px;
         }
+
+
+
+        
+    {% block style %}
+
+    
+    
+    {% endblock style %}
+
     </style>
+
+
 </head>
 <body>
     <!-- Header Section -->
@@ -190,7 +202,7 @@
             <button id="renewPolicy">Renew Policy</button>
             <button id="claim">Claim</button>
             <!-- Sign In Button -->
-            <a class="signin-button" href="{% url "signup" %}"><i class="fas fa-sign-in-alt"></i> Sign up</a>
+            <a class="signin-button" href="{% url "signup" %}"><i class="fas fa-sign-in-alt"></i> Sign Up</a>
             <a class="signin-button" href=""><i class="fas fa-sign-in-alt"></i> Sign In</a>
             <!-- End of Sign In Button -->
             <button id="support">Support</button>
@@ -199,36 +211,10 @@
 
     <!-- Main Content Section (Dashboard) -->
     <main>
-        <div class="dashboard-container">
-            <div class="dashboard-item">
-                <h3>Life Insurance</h3>
-                <p>Protect your loved ones with our life insurance plans.</p>
-                <button>Learn More</button>
-            </div>
-
-            <div class="dashboard-item">
-                <h3>Auto Insurance</h3>
-                <p>Get coverage for your vehicle against accidents and damage.</p>
-                <button>Learn More</button>
-            </div>
-
-            <div class="dashboard-item">
-                <h3>Home Insurance</h3>
-                <p>Secure your home and belongings with our home insurance options.</p>
-                <button>Learn More</button>
-            </div>
-
-            <!-- Add Health Insurance to the dashboard -->
-            <div class="dashboard-item">
-                <h3>Health Insurance</h3>
-                <p>Ensure your health and well-being with our health insurance plans.</p>
-                <button>Learn More</button>
-            </div>
-            <!-- End of Health Insurance -->
-
-            <!-- Add more dashboard items as needed -->
-
-        </div>
+     {% block body %}
+     
+     
+     {% endblock body %}
     </main>
 
     <!-- Footer Section -->
