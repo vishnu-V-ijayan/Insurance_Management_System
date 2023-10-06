@@ -190,8 +190,12 @@
             <button id="renewPolicy">Renew Policy</button>
             <button id="claim">Claim</button>
             <!-- Sign In Button -->
+            {% if request.user.is_authenticated %}
+            <a class="signin-button" href="{% url "handlelogout" %}"><i class="fas fa-sign-in-alt"></i> Log out</a>
+            {% else %}
             <a class="signin-button" href="{% url "signup" %}"><i class="fas fa-sign-in-alt"></i> Sign up</a>
-            <a class="signin-button" href=""><i class="fas fa-sign-in-alt"></i> Sign In</a>
+            <a class="signin-button" href="{% url "handlelogin" %}"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+            {% endif %}
             <!-- End of Sign In Button -->
             <button id="support">Support</button>
         </nav>

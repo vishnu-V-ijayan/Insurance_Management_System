@@ -1,14 +1,12 @@
 from django.db import models
-
-# Create your models here.
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     class Role(models.TextChoices):
-        ADMIN="ADMIN",'Admin'
-        CUSTOMER="CUSTOMER",'Customer'
-        ="SELLER",'Seller'
-        SERVICE="SERVICE",'Service'
+        ADMIN = "ADMIN", 'Admin'
+        CUSTOMER = "CUSTOMER", 'Customer'
+        EMPLOYEE = "EMPLOYEE", 'Employee'
 
-
-    role = models.CharField(max_length=50,choices=Role.choices)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=10, unique=True)  # Unique phone number field
+    role = models.CharField(max_length=50, choices=Role.choices)
