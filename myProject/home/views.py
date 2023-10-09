@@ -43,6 +43,7 @@ def Sign_up(request):
             user=User.objects.create_user(first_name=fname,last_name=lname,email=email,phone=phone,password=password,username=username,role='CUSTOMER')
             #user.is_active=False 
             user.save()
+            return redirect('/handlelogin')
               
 
       
