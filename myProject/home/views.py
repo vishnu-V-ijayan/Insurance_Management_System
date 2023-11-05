@@ -10,7 +10,7 @@ from django.views.decorators.cache import never_cache
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import User
+from .models import User,EmployeeRegistration
 from django.contrib.auth import authenticate, login,logout
 from django.utils.encoding import DjangoUnicodeDecodeError
 import re
@@ -123,42 +123,31 @@ class ActivateAccountView(View):
 
 
 
-
-
-
-
-
-
-
-
 def handlelogin(request):
-     if request.method=="POST":
-            username=request.POST['email']
-            password=request.POST['password']
-            myuser=authenticate(request,username=username,password=password)
-            
+    if request.method == "POST":
+        username = request.POST['email']
+        password = request.POST['password']
+        myuser = authenticate(request, username=username, password=password)
 
-            if myuser is not None:
-                   login(request,myuser)
-                   request.session['username']=username
-                        #request.session['username'] =myuser.username
-                   if myuser.role=='CUSTOMER':
-                        
-                        return redirect('/customer_home/')
-                   elif myuser.role=='SELLER':
-                        
-                        return HttpResponse("seller login")
-                   elif myuser.role=='ADMIN':
-                          
-                          return HttpResponse("Admin login sucess")
-                          
-            else:
-                   messages.error(request,"enter valid credentials")
-                   return redirect('/handlelogin')
-     response = render(request,'login.html')
-     response['Cache-Control'] = 'no-store,must-revalidate'
-     return response
+        if myuser is not None:
+            login(request, myuser)
+            request.session['username'] = username
+
+            if myuser.role == 'CUSTOMER':
+                return redirect('/customer_home/')
+            elif myuser.role == 'SELLER':
+                return HttpResponse("seller login")
+            elif myuser.role == 'ADMIN':
+                return redirect('/admin_dashboard/')  # Redirect to the admin dashboard page
+
+        else:
+            messages.error(request, "Enter valid credentials")
+            return redirect('/handlelogin')
     
+    response = render(request, 'login.html')
+    response['Cache-Control'] = 'no-store, must-revalidate'
+    return response
+
 
 def customer_home(request):
        if 'username' in request.session:
@@ -168,10 +157,46 @@ def customer_home(request):
        else:
              return redirect('handlelogin')
 
-
-
-
 def handlelogout(request):
     if request.user.is_authenticated:
         logout(request)
     return redirect('/')
+
+def admin_dashboard(request):
+      return render(request,"dashboard.html")
+
+def employee_signup(request):
+    if request.method == 'POST':
+        # Handle User registration (username and password)
+        email = request.POST['email']
+        password = request.POST['password']
+
+        # Set the username to the user's email
+        username = email
+
+        # Create a User instance
+        user = User.objects.create_user(username=username, email=email, password=password)
+
+        # Handle EmployeeRegistration
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        phone = request.POST['phone']
+        address = request.POST['address']
+        resume_upload = request.FILES['resume_upload']
+
+        # Create an EmployeeRegistration instance
+        employee_registration = EmployeeRegistration(
+            user=user,  # Link the User to the EmployeeRegistration
+            first_name=first_name,
+            last_name=last_name,
+            phone=phone,
+            address=address,
+            resume_upload=resume_upload
+        )
+        employee_registration.save()
+
+        # Redirect to a success page or do other necessary actions
+        return redirect('index')  # Change 'success_page' to the URL for the success page
+
+    # Handle form errors and render the registration form
+    return render(request, 'employee_signup.html')

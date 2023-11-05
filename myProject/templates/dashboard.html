@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, h3, ul, li, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #005293;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .admin-info {
+            text-align: center;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .content {
+            display: flex;
+            flex: 1; /* Allow content to grow and fill available space */
+        }
+
+        .sidebar {
+            background-color: #005293;
+            color: #fff;
+            min-height: 100%;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 250px;
+            overflow-y: auto;
+        }
+
+        .sidebar-item {
+            padding: 10px 0;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            overflow: auto;
+        }
+
+        /* Logout button */
+        .logout-button {
+            color: #fff;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        /* Card for displaying statistics */
+        .stat-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Admin icon */
+        .admin-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        /* Sidebar links */
+        .sidebar-link {
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        /* Hover effect on sidebar links */
+        .sidebar-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section with Logout Button -->
+    <header>
+        <div class="logo">
+            <!-- Insert your logo image here -->
+            <img src="logo.png" alt="Admin Logo">
+            <h1>Admin Dashboard</h1>
+        </div>
+        <a class="logout-button" href="{% url "handlelogout" %}">Logout</a>
+    </header>
+
+    <!-- Main Content Section (Dashboard) -->
+    <div class="content">
+        <!-- Sidebar Section -->
+        <div class="sidebar">
+            <div class="admin-info">
+                <img src="admin-icon.png" alt="Admin Icon" class="admin-icon">
+                <p>Admin</p>
+            </div>
+            <a class="sidebar-link" href="#">Customer</a>
+            <a class="sidebar-link" href="#">Category</a>
+            <a class="sidebar-link" href="#">Policy</a>
+            <a class="sidebar-link" href="#">Question</a>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3>Total Registered Users</h3>
+                            <p>1000</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3>Listed Policies</h3>
+                            <p>50</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3>Listed Categories</h3>
+                            <p>10</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3>Total Questions</h3>
+                            <p>200</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3>Total Policy Holders</h3>
+                            <p>800</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3>Approved Policy Holders</h3>
+                            <p>600</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3>Disapproved Policy Holders</h3>
+                            <p>100</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <h3>Policy Holders Waiting</h3>
+                            <p>100</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
