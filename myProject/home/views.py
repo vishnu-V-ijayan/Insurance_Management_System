@@ -10,7 +10,7 @@ from django.views.decorators.cache import never_cache
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import User,EmployeeRegistration
+from .models import User
 from django.contrib.auth import authenticate, login,logout
 from django.utils.encoding import DjangoUnicodeDecodeError
 import re
@@ -165,7 +165,7 @@ def handlelogout(request):
 def admin_dashboard(request):
       return render(request,"dashboard.html")
 
-def employee_signup(request):
+"""def employee_signup(request):
     if request.method == 'POST':
         # Handle User registration (username and password)
         email = request.POST['email']
@@ -199,4 +199,4 @@ def employee_signup(request):
         return redirect('index')  # Change 'success_page' to the URL for the success page
 
     # Handle form errors and render the registration form
-    return render(request, 'employee_signup.html')
+    return render(request, 'employee_signup.html')"""

@@ -186,9 +186,9 @@
             <h1>InsureMagnet</h1>
         </div>
         <nav>
-            <button id="insuranceTypes">Insurance Types</button>
-            <button id="renewPolicy">Renew Policy</button>
-            <button id="claim">Claim</button>
+            <a href="{% url "allhospitals" %}">Hospitals</a>
+            <a href="#">Patients</a>
+            <a href="#">Claim</a>
             <!-- Sign In Button -->
             {% if request.user.is_authenticated %}
             <a class="signin-button" href="{% url "handlelogout" %}"><i class="fas fa-sign-in-alt"></i> Log out</a>

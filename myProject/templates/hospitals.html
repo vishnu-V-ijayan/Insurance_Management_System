@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hospital Insurance Data</title>
+</head>
+<body>
+   
+
+    <!-- Main Content Section (Dashboard) -->
+    <main>
+     {% block body %}
+     
+     <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Logo</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Category</th>
+            <th scope="col">Address</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for each_hospital in all_hospitals_key %}
+          <tr>
+            <th scope="row">1</th>
+            <td><img src="{{ each_hospital.logo.url }}" width="150" height="150"class="image-fluid"></td>
+            <td>{{ each_hospital.name }}</td>
+            <td>{{ each_hospital.email }}</td>
+            <td>{{ each_hospital.category }}</td>
+            <td>{{ each_hospital.address }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+     {% endblock body %}
+    </main>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+
+</body>
+</html>
