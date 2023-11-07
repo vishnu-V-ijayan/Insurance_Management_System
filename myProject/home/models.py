@@ -8,6 +8,7 @@ class User(AbstractUser):
         ADMIN = "ADMIN", 'Admin'
         CUSTOMER = "CUSTOMER", 'Customer'
         EMPLOYEE = "EMPLOYEE", 'Employee'
+        HOSPITAL="HOSPITAL", 'hospital'
 
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=10, unique=True)  # Unique phone number field
