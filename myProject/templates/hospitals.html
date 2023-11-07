@@ -1,4 +1,6 @@
+
 {% extends 'base.html' %}
+{% load static  %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +28,7 @@
             {% for each_hospital in all_hospitals_key %}
           <tr>
             <th scope="row">1</th>
-            <td><img src="{{ each_hospital.logo.url }}" width="150" height="150"class="image-fluid"></td>
+            <td><img src="{{ each_hospital.logo.url }}" class="image-fluid" width="150" height="150"></td>
             <td>{{ each_hospital.name }}</td>
             <td>{{ each_hospital.email }}</td>
             <td>{{ each_hospital.category }}</td>

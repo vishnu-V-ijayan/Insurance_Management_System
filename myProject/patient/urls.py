@@ -5,6 +5,6 @@ urlpatterns = [
 
 # 3 parameters required -- path_name--view_name--url_name...!
 
-path(),
+path('allpatients/',views.getAllPatients,name="patients"),
 
 ]
