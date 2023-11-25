@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'hospital',
     'patient',
+    'policy_premium',
 ]
 
 MIDDLEWARE = [
@@ -141,7 +142,7 @@ AUTH_USER_MODEL= "home.User"
 
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 SESSION_COOKIE_NAME = "sessionid"
-SESSION_COOKIE_AGE = 600
+SESSION_COOKIE_AGE = 10000
 LOGIN_URL='/handlelogin/'
 
 

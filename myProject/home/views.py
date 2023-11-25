@@ -6,14 +6,14 @@ from django.contrib import messages
 from .models import User
 from django.contrib.auth import authenticate, login,logout
 from django.views.decorators.cache import never_cache
-
+from django.contrib.auth.decorators import login_required
+from patient.models import Patient
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from .models import User
 from django.contrib.auth import authenticate, login,logout
 from django.utils.encoding import DjangoUnicodeDecodeError
-import re
 
 from django.views.generic import View
 from .utils import *
@@ -48,16 +48,13 @@ class EmailThread(threading.Thread):
 
 
 # Create your views here.
+
 @never_cache
+
 def index(request):
     return render(request, 'index.html')
     #return HttpResponse("Hello World..!")
     
-
-
-    
-
-
 def Sign_up(request):
     if request.method=="POST":
             fname=request.POST['fname']
@@ -73,14 +70,13 @@ def Sign_up(request):
             if password!=confirm_password:
                     messages.warning(request,"password is not matching")
                     return render(request,'signup.html')
-            try:
-                      if User.objects.get(username=email):
-                             messages.warning(request,"Email is already taken")
-                             return render(request,'signup.html')
-            except Exception as identifiers:
-                      pass
+            
+            if User.objects.filter(username=request.POST['email']).exists():
+                    messages.warning(request, "Email is already taken")
+                    return render(request, 'signup.html')
+          
 
-            user=User.objects.create_user(first_name=fname,last_name=lname,email=email,phone=phone,password=password,username=username,role='CUSTOMER')
+            user=User.objects.create_user(first_name=fname,last_name=lname,email=email,password=password,username=username,role='CUSTOMER')
             user.is_active=False 
             user.save()
             current_site=get_current_site(request)  
@@ -96,7 +92,7 @@ def Sign_up(request):
 
             email_message=EmailMessage(email_subject,message,settings.EMAIL_HOST_USER,[email],)
             EmailThread(email_message).start()
-            messages.info(request,"Active your account by clicking the link send to your email")
+            messages.info(request,"Activate your account by clicking the link send to your email")
 
 
 
@@ -139,6 +135,8 @@ def handlelogin(request):
                 return HttpResponse("seller login")
             elif myuser.role == 'ADMIN':
                 return redirect('/admin_dashboard/')  # Redirect to the admin dashboard page
+            elif myuser.role == 'HOSPITAL':
+                return redirect('/hospital_dashboard/')
 
         else:
             messages.error(request, "Enter valid credentials")
@@ -148,7 +146,8 @@ def handlelogin(request):
     response['Cache-Control'] = 'no-store, must-revalidate'
     return response
 
-
+@never_cache
+@login_required(login_url='/handlelogin/')
 def customer_home(request):
        if 'username' in request.session:
         response = render(request,'customer_page.html')
@@ -164,6 +163,17 @@ def handlelogout(request):
 
 def admin_dashboard(request):
       return render(request,"dashboard.html")
+
+def view_policies(request):
+      return render(request,"view_policies.html")
+
+
+@never_cache
+@login_required(login_url='/handlelogin/')
+def hospital_dashboard(request):
+      patients=Patient.objects.all()
+
+      return render(request,"hospital/hospital_dashboard.html",{'patients': patients})
 
 """def employee_signup(request):
     if request.method == 'POST':

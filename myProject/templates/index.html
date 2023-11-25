@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insurance Management System</title>
+    <title>Health Insurance Management System</title>
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -76,6 +76,16 @@
             justify-content: flex-end;
         }
 
+        .navbar-link {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .navbar-link:hover {
+            text-decoration: underline;
+        }
+
         nav button {
             background-color: #005293;
             color: #fff;
@@ -127,6 +137,33 @@
             border-radius: 5px;
             padding: 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        /* Hover animation */
+        .dashboard-item:hover {
+            transform: scale(1.05);
+        }
+
+        .dashboard-item h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-item p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-item button {
+            background-color: #005293;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         /* Add additional styling as needed */
@@ -197,6 +234,7 @@
             <a class="signin-button" href="{% url "handlelogin" %}"><i class="fas fa-sign-in-alt"></i> Sign In</a>
             {% endif %}
             <!-- End of Sign In Button -->
+            <a href="{% url 'hospital_registration' %}" class="navbar-link">Hospital Registration</a>
             <button id="support">Support</button>
         </nav>
     </header>
@@ -230,8 +268,15 @@
             </div>
             <!-- End of Health Insurance -->
 
-            <!-- Add more dashboard items as needed -->
+            <!-- Add Hospital Registration Link -->
+            <div class="dashboard-item">
+                <h3>Hospital Registration</h3>
+                <p>Register your hospital with us to provide healthcare services.</p>
+                <a href="{% url 'hospital_registration' %}" class="btn btn-primary">Register Now</a>
+            </div>
+            <!-- End of Hospital Registration Link -->
 
+            <!-- Add more dashboard items as needed -->
         </div>
     </main>
 
